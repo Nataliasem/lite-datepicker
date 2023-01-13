@@ -6,3 +6,20 @@
 body {
     @apply bg-blue-900;
 }
+
+@layer base {
+    :root {
+        --color-text-base: white;
+        --color-fill: black;
+    }
+
+    .theme-light {
+        --color-text-base: blue;
+        --color-fill: white;
+    }
+
+    .theme-dark {
+        --color-text-base: white;
+        --color-fill: blue;
+    }
+}

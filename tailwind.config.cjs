@@ -4,8 +4,19 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx,vue}",
   ],
-  theme: {
-    extend: {},
-  },
+    theme: {
+      extend: {
+        textColor: {
+          skin: {
+            base: '--color-text-base'
+          }
+        },
+        backgroundColor: {
+          skin: {
+            fill: '--color-fill'
+          }
+        }
+      }
+    },
   plugins: [],
 }
