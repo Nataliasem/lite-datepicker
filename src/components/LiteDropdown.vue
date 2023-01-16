@@ -1,3 +1,13 @@
+<template>
+  <div ref="dropdownElement">
+    <slot name="attachTo" />
+  </div>
+
+  <div ref="dropdownContent">
+    <slot />
+  </div>
+</template>
+
 <script setup>
 import {onMounted, onUnmounted, ref, watch} from 'vue'
 import tippy from 'tippy.js'
@@ -17,7 +27,8 @@ const initTippy = () => {
     theme: props.theme,
     trigger: 'click',
     placement: 'top-start',
-    arrow: false
+    arrow: false,
+    interactive: true
   })
 
   tippyInstance && tippyInstance.show()
@@ -39,16 +50,6 @@ onUnmounted(() => {
   destroyTippy()
 })
 </script>
-
-<template>
-  <div ref="dropdownElement">
-    <slot name="attachTo" />
-  </div>
-
-  <div ref="dropdownContent">
-    <slot />
-  </div>
-</template>
 
 <style>
 .tippy-box[data-theme~='light'] {
