@@ -13,10 +13,6 @@ import {onMounted, onUnmounted, ref, watch} from 'vue'
 import tippy from 'tippy.js'
 import 'tippy.js/dist/tippy.css'
 
-const props = defineProps({
-  theme: String
-})
-
 let tippyInstance
 const dropdownElement = ref(null)
 const dropdownContent = ref(null)
@@ -24,11 +20,12 @@ const dropdownContent = ref(null)
 const initTippy = () => {
   tippyInstance = tippy(dropdownElement.value, {
     content: dropdownContent.value,
-    theme: props.theme,
+    theme: 'lite-dropdown',
     trigger: 'click',
     placement: 'top-start',
     arrow: false,
-    interactive: true
+    interactive: true,
+    hideOnClick: false
   })
 
   tippyInstance && tippyInstance.show()
@@ -37,10 +34,6 @@ const initTippy = () => {
 const destroyTippy = () => {
   tippyInstance && tippyInstance.destroy()
 }
-
-watch(() => props.theme, () => {
-  initTippy()
-})
 
 onMounted(() => {
   initTippy()
@@ -52,11 +45,7 @@ onUnmounted(() => {
 </script>
 
 <style>
-.tippy-box[data-theme~='light'] {
-  @apply bg-white text-blue-800;
-}
-
-.tippy-box[data-theme~='dark'] {
-  @apply bg-blue-800 text-white;
+.tippy-box[data-theme~='lite-dropdown'] {
+  @apply bg-skin-fill text-skin-base;
 }
 </style>

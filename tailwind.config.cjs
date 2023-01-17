@@ -8,12 +8,22 @@ module.exports = {
       extend: {
         textColor: {
           skin: {
-            base: '--color-text-base'
+            base: 'var(--color-text-base)',
+            inverted: 'var(--color-text-inverted)'
           }
         },
         backgroundColor: {
           skin: {
-            fill: '--color-fill'
+            fill: 'var(--color-fill)',
+            'fill-inverted': 'var(--color-fill-inverted)',
+            'button-main': 'var(--color-button-main)',
+            'button-main-hover': 'var(--color-button-main-hover)',
+            'button-main-active': 'var(--color-button-main-active)'
+          }
+        },
+        borderColor: {
+          skin: {
+            'input-border': 'var(--color-input-border)'
           }
         }
       }

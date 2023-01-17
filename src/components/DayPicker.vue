@@ -55,14 +55,14 @@ const selectDay = (day) => {
 .days-container .day {
   @apply text-lg;
   @apply px-2 py-1 flex justify-center items-center cursor-pointer;
-  @apply border-b border-transparent;
+  @apply border-b border-transparent rounded-sm;
 }
 
 .days-container .day:hover {
-  @apply bg-blue-100;
+  @apply bg-skin-button-main-hover text-skin-inverted;
 }
 
 .days-container .day.selected {
-  @apply border-blue-800;
+  @apply bg-skin-button-main-active text-skin-inverted;
 }
 </style>

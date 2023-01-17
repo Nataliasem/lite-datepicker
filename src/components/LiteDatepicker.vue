@@ -1,9 +1,11 @@
 <template>
-  <button type="button" class="bg-white mr-5 p-1" @click="toggleTheme">Сменить тему</button>
-
-  <lite-dropdown :theme="theme">
+  <lite-dropdown>
     <template #attachTo>
-      <input v-model="selectedDay" type="text" placeholder="Выберите дату">
+      <input
+          v-model="selectedDay"
+          class="p-3 rounded-sm border-2 rounded-sm border-skin-input-border"
+          type="text"
+          placeholder="Выберите дату">
     </template>
 
     <div class="picker-wrapper p-3">
@@ -30,6 +32,8 @@ const selectedDay = ref(null)
 </script>
 
 <style>
-.picker-wrapper {
+input::placeholder {
+  @apply text-gray-400;
+  opacity: 1; /* Firefox */
 }
 </style>
