@@ -4,7 +4,7 @@
 
 .app-container {
     @apply flex justify-center items-center h-screen;
-    @apply bg-skin-fill-inverted;
+    @apply bg-skin-fill-container;
 }
 
 @layer base {
@@ -16,6 +16,7 @@
     }
 
     .theme-light {
+        --color-fill-container: #4338ca;
         --color-text-base: #4338ca;
         --color-text-inverted: white;
         --color-fill: white;
@@ -28,6 +29,7 @@
 
     .theme-dark {
         --color-text-base: white;
+        --color-fill-container: white;
         --color-text-inverted: #4338ca;
         --color-fill: #4338ca;
         --color-fill-inverted: white;
