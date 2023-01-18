@@ -22,13 +22,23 @@ import DayPicker from './DayPicker.vue'
 import MonthPicker from './MonthPicker.vue'
 import YearPicker from './YearPicker.vue'
 import {ref} from 'vue'
+import {dayjs} from "../utils.js"
 
-const theme = ref('light')
-const toggleTheme = () => {
-  theme.value = theme.value === 'light' ? 'dark' : 'light'
+const selectedDay = ref(18)
+
+// составить полную дату
+const dateToParse = {
+  year: 2023,
+  month: 1,
+  selectedDay: selectedDay.value
 }
 
-const selectedDay = ref(null)
+const date = dayjs().set(dateToParse) // плагин позволяет передавать объект
+
+// восстановить дату по выбранному дню месяца
+const
+
+debugger
 </script>
 
 <style>
