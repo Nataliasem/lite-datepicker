@@ -2,16 +2,21 @@
   <lite-dropdown>
     <template #attachTo>
       <input
-          v-model="selectedDay"
           class="p-3 rounded-sm border-2 rounded-sm border-skin-input-border"
           type="text"
-          placeholder="Выберите дату">
+          placeholder="Выберите дату"
+      >
     </template>
 
     <div class="picker-wrapper p-3">
-      <day-picker v-model:selectedDay="selectedDay" />
-      <month-picker />
-      <year-picker />
+      <div class="flex items-center justify-center space-x-5">
+        <month-picker v-model:selected-month="rawDate.month"/>
+        <year-picker />
+      </div>
+      <day-picker
+          v-model:selected-day="rawDate.day"
+          :selected-date="selectedDate"
+      />
     </div>
   </lite-dropdown>
 </template>
@@ -21,24 +26,21 @@ import LiteDropdown from './LiteDropdown.vue'
 import DayPicker from './DayPicker.vue'
 import MonthPicker from './MonthPicker.vue'
 import YearPicker from './YearPicker.vue'
-import {ref} from 'vue'
-import {dayjs} from "../utils.js"
+import {ref, computed} from 'vue'
+import {dayjs} from '../utils.js'
 
-const selectedDay = ref(18)
+const defaultMonth = dayjs().month()
+const defaultYear = dayjs().year()
 
-// составить полную дату
-const dateToParse = {
-  year: 2023,
-  month: 1,
-  selectedDay: selectedDay.value
-}
+const rawDate = ref({
+  year: defaultYear, // текущий год по умолчанию
+  month: defaultMonth, // текущий месяц по умолчанию
+  day: null
+})
 
-const date = dayjs().set(dateToParse) // плагин позволяет передавать объект
-
-// восстановить дату по выбранному дню месяца
-const
-
-debugger
+const selectedDate = computed(() => {
+  return rawDate.value.day ? dayjs(rawDate.value).format() : dayjs().format()
+})
 </script>
 
 <style>
