@@ -42,6 +42,14 @@ export const fullDateToday = () => {
 }
 
 /**
+ * @param {string} date
+ * @returns {Number}
+ */
+export const daysInMonthNumber = (date) => {
+    return dayjs(date).daysInMonth()
+}
+
+/**
  * @param {RawDate} date
  * @returns {string} fullDate
  */

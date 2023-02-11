@@ -10,8 +10,8 @@
 
     <div class="picker-wrapper p-3">
       <div class="flex items-center justify-center space-x-5">
-        <month-picker v-model:selectedMonth="rawDate.month"/>
-        <year-picker />
+        <month-picker v-model:selectedMonth="rawDate.month" />
+        <year-picker v-model:selectedYear="rawDate.year" />
       </div>
       <day-picker
           v-model:selectedDay="rawDate.day"
@@ -28,7 +28,7 @@ import DayPicker from './DayPicker.vue'
 import MonthPicker from './MonthPicker.vue'
 import YearPicker from './YearPicker.vue'
 import { ref, computed } from 'vue'
-import {dayjs, fullDate, fullDateToday, monthToday, yearToday} from '../utils.js'
+import { daysInMonthNumber, fullDate, fullDateToday, monthToday, yearToday } from '../utils.js'
 
 const rawDate = ref({
   year: yearToday(),
@@ -41,7 +41,7 @@ const selectedDate = computed(() => {
 })
 
 const daysInMonth = computed(() => {
-  return dayjs(selectedDate.value).daysInMonth()
+  return daysInMonthNumber(selectedDate.value)
 })
 </script>
 
