@@ -1,10 +1,11 @@
 <template>
   <div class="day-picker">
-    <div class="week-day" v-for="weekDay in weekDays">{{ weekDay }}</div>
+    <div class="week-day" v-for="weekDay in WEEK_DAYS">{{ weekDay }}</div>
     <div
+        v-for="day in daysInMonth"
         class="day"
-        :class="{'selected': checkIsSelected(day)}"
-        v-for="day in daysInMonthNumber"
+        :id="'day-' + day"
+        :class="setDayClass(day)"
         @click="selectDay(day)"
     >
       {{ day }}
@@ -13,23 +14,30 @@
 </template>
 
 <script setup>
-import {ref, computed} from 'vue'
-import dayjs from 'dayjs'
-import { weekDays} from '../constants.js'
+import { WEEK_DAYS, VALID_DAYS_IN_MONTH_NUMBER } from '../constants.js'
+import { dayToday } from '../utils.js'
 
 const props = defineProps({
-  selectedDay: Number,
-  selectedDate: String
+  selectedDay: {
+    type: Number,
+    default: null
+  },
+  daysInMonth: {
+    type: Number,
+    required: true,
+    validator(value) {
+      return VALID_DAYS_IN_MONTH_NUMBER.includes(value)
+    }
+  }
 })
 
 const emit = defineEmits(['update:selectedDay'])
 
-const daysInMonthNumber = ref(null)
-
-daysInMonthNumber.value = dayjs(props.selectedDate).daysInMonth()
-
-const checkIsSelected = (day) => {
-  return props.selectedDay === day
+const setDayClass = (day) => {
+  return {
+    selected: day === props.selectedDay,
+    today: day === dayToday()
+  }
 }
 
 const selectDay = (day) => {
@@ -39,11 +47,7 @@ const selectDay = (day) => {
 
 <style>
 .day-picker {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 4px;
-  grid-row-gap: 4px;
+  @apply grid grid-cols-7 grid-rows-5 gap-2;
 }
 
 .day-picker .week-day {
@@ -63,5 +67,9 @@ const selectDay = (day) => {
 
 .day-picker .day.selected {
   @apply bg-skin-button-main-active text-skin-inverted;
+}
+
+.day-picker .day.today {
+  @apply text-skin-accent;
 }
 </style>

@@ -1,14 +1,39 @@
 <template>
   <div class="year-picker">
-    <select name="year-select">
-      <option v-for="year in years">{{ year }}</option>
-    </select>
+    <label>
+      <input
+          type="text"
+          :value="selectedYearLocal"
+          @input="selectYear($event.target.value)"
+      />
+    </label>
   </div>
 </template>
 
 <script setup>
 import {ref} from 'vue'
-const years = ref(['2022', '2023'])
+
+const props = defineProps({
+  selectedYear: {
+    type: Number,
+    default: null
+  }
+})
+
+const emit = defineEmits(['update:selectedYear'])
+
+const selectedYearLocal = ref(props.selectedYear)
+
+const selectYear = (year) => {
+  const isCorrect = /^[0-9]{4}$/.test(year)
+
+  if(!isCorrect) {
+    return
+  }
+
+  selectedYearLocal.value = Number(year)
+  emit('update:selectedYear', year)
+}
 </script>
 
 <style scoped>
