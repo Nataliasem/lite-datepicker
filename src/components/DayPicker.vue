@@ -4,6 +4,7 @@
     <div
         v-for="day in daysInMonth"
         class="day"
+        :id="'day-' + day"
         :class="setDayClass(day)"
         @click="selectDay(day)"
     >

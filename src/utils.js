@@ -12,18 +12,31 @@ dayjs.locale('ru')
  * @property {number | null} day
  */
 
+
+/**
+ * @returns {number} day
+ */
 export const dayToday = () => {
     return dayjs().date()
 }
 
+/**
+ * @returns {number} month
+ */
 export const monthToday = () => {
     return dayjs().month()
 }
 
+/**
+ * @returns {number} year
+ */
 export const yearToday = () => {
     return dayjs().year()
 }
 
+/**
+ * @returns {string} fullDate
+ */
 export const fullDateToday = () => {
     return dayjs().format()
 }
