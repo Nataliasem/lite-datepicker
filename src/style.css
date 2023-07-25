@@ -11,6 +11,7 @@
     :root {
         --color-text-base: white;
         --color-text-inverted: black;
+        --color-text-accent: #ea580c;
         --color-fill: black;
         --color-fill-inverted: white;
     }
@@ -19,6 +20,7 @@
         --color-fill-container: #4338ca;
         --color-text-base: #4338ca;
         --color-text-inverted: white;
+        --color-text-accent: #ea580c;
         --color-fill: white;
         --color-fill-inverted: #4338ca;
         --color-button-main: white;
@@ -29,8 +31,9 @@
 
     .theme-dark {
         --color-text-base: white;
-        --color-fill-container: white;
         --color-text-inverted: #4338ca;
+        --color-text-accent: #ea580c;
+        --color-fill-container: white;
         --color-fill: #4338ca;
         --color-fill-inverted: white;
         --color-button-main: #4338ca;

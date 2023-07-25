@@ -10,14 +10,15 @@
 
     <div class="picker-wrapper p-3">
       <div class="flex items-center justify-center space-x-5">
-        <month-picker v-model:selected-month="rawDate.month"/>
-        <year-picker />
+        <month-picker v-model:selectedMonth="rawDate.month" />
+        <year-picker v-model:selectedYear="rawDate.year" />
       </div>
       <day-picker
-          v-model:selected-day="rawDate.day"
+          v-model:selectedDay="rawDate.day"
           :selected-date="selectedDate"
+          :days-in-month="daysInMonth"
       />
-    </div>
+      </div>
   </lite-dropdown>
 </template>
 
@@ -26,20 +27,21 @@ import LiteDropdown from './LiteDropdown.vue'
 import DayPicker from './DayPicker.vue'
 import MonthPicker from './MonthPicker.vue'
 import YearPicker from './YearPicker.vue'
-import {ref, computed} from 'vue'
-import {dayjs} from '../utils.js'
-
-const defaultMonth = dayjs().month()
-const defaultYear = dayjs().year()
+import { ref, computed } from 'vue'
+import { daysInMonthNumber, fullDate, fullDateToday, monthToday, yearToday } from '../utils.js'
 
 const rawDate = ref({
-  year: defaultYear, // текущий год по умолчанию
-  month: defaultMonth, // текущий месяц по умолчанию
+  year: yearToday(),
+  month: monthToday(),
   day: null
 })
 
 const selectedDate = computed(() => {
-  return rawDate.value.day ? dayjs(rawDate.value).format() : dayjs().format()
+  return rawDate.value.day ? fullDate(rawDate.value) : fullDateToday()
+})
+
+const daysInMonth = computed(() => {
+  return daysInMonthNumber(selectedDate.value)
 })
 </script>
 

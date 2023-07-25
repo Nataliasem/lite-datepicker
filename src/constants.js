@@ -1,4 +1,4 @@
-export const weekDays = [
+export const WEEK_DAYS = [
     'пн',
     'вт',
     'ср',
@@ -8,7 +8,7 @@ export const weekDays = [
     'вс',
 ]
 
-export const monthList = [
+export const MONTH_LIST = [
     { name: 'январь', index: 0 },
     { name: 'февраль', index: 1 },
     { name: 'март', index: 2 },
@@ -22,3 +22,5 @@ export const monthList = [
     { name: 'ноябрь', index: 10 },
     { name: 'декабрь', index: 11 }
 ]
+
+export const VALID_DAYS_IN_MONTH_NUMBER = [30, 31, 28, 29]

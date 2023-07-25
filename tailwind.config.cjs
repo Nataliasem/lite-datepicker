@@ -9,7 +9,8 @@ module.exports = {
         textColor: {
           skin: {
             base: 'var(--color-text-base)',
-            inverted: 'var(--color-text-inverted)'
+            inverted: 'var(--color-text-inverted)',
+            accent: 'var(--color-text-accent)'
           }
         },
         backgroundColor: {
