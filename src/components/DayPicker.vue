@@ -1,14 +1,19 @@
 <template>
   <div class="day-picker">
-    <div class="week-day" v-for="weekDay in WEEK_DAYS">{{ weekDay }}</div>
-    <div
-        v-for="day in daysInMonth"
-        class="day"
-        :id="'day-' + day"
-        :class="setDayClass(day)"
-        @click="selectDay(day)"
-    >
-      {{ day }}
+    <div class="week-day-wrapper">
+      <div class="week-day" v-for="weekDay in WEEK_DAYS">{{ weekDay }}</div>
+    </div>
+
+    <div class="day-wrapper">
+      <div
+          v-for="day in daysInMonth"
+          class="day"
+          :id="'day-' + day"
+          :class="setDayClass(day)"
+          @click="selectDay(day)"
+      >
+        {{ day }}
+      </div>
     </div>
   </div>
 </template>
@@ -46,30 +51,35 @@ const selectDay = (day) => {
 </script>
 
 <style>
-.day-picker {
-  @apply grid grid-cols-7 grid-rows-5 gap-2;
+.day-wrapper,
+.week-day-wrapper {
+  @apply grid grid-cols-7 grid-rows-1 gap-2;
 }
 
-.day-picker .week-day {
+.week-day-wrapper .week-day {
   @apply py-1 px-2 text-gray-400;
   @apply flex justify-center items-center;
 }
 
-.day-picker .day {
+.day-wrapper .day {
   @apply text-lg;
   @apply px-2 py-1 flex justify-center items-center cursor-pointer;
   @apply border-b border-transparent rounded-sm;
 }
 
-.day-picker .day:hover {
+.day-wrapper .day:first-child {
+  grid-column-start: -7;
+}
+
+.day-wrapper .day:hover {
   @apply bg-skin-button-main-hover text-skin-inverted;
 }
 
-.day-picker .day.selected {
+.day-wrapper .day.selected {
   @apply bg-skin-button-main-active text-skin-inverted;
 }
 
-.day-picker .day.today {
+.day-wrapper .day.today {
   @apply text-skin-accent;
 }
 </style>
